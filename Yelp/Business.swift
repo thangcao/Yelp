@@ -7,8 +7,10 @@
 //
 
 import UIKit
-
-class Business: NSObject {
+import MapKit
+class Business: NSObject, MKAnnotation {
+    let title: String?
+    let subtitle: String?
     let name: String?
     let address: String?
     let imageURL: NSURL?
@@ -16,17 +18,21 @@ class Business: NSObject {
     let distance: String?
     let ratingImageURL: NSURL?
     let reviewCount: NSNumber?
-    
+    let coordinate: CLLocationCoordinate2D
+    let phoneNumber: String?
+    let isOpened: Int?
     init(dictionary: NSDictionary) {
+
         name = dictionary["name"] as? String
-        
+        title = name
         let imageURLString = dictionary["image_url"] as? String
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
         } else {
             imageURL = nil
         }
-        
+        phoneNumber = dictionary["display_phone"] as? String
+        isOpened = dictionary["is_closed"] as? Int
         let location = dictionary["location"] as? NSDictionary
         var address = ""
         if location != nil {
@@ -56,7 +62,7 @@ class Business: NSObject {
         } else {
             categories = nil
         }
-        
+        subtitle = categories
         let distanceMeters = dictionary["distance"] as? NSNumber
         if distanceMeters != nil {
             let milesPerMeter = 0.000621371
@@ -73,6 +79,12 @@ class Business: NSObject {
         }
         
         reviewCount = dictionary["review_count"] as? NSNumber
+        
+        // Cordinate
+        let latitude = dictionary["location"]!["coordinate"]!!["latitude"] as? Double
+        let longitude = dictionary["location"]!["coordinate"]!!["longitude"] as? Double
+        let coordinate = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+        self.coordinate = coordinate
     }
     
     class func businesses(array array: [NSDictionary]) -> [Business] {
@@ -88,7 +100,16 @@ class Business: NSObject {
         YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
     }
     
-    class func searchWithTerm(term: String, sort: YelpSortMode?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
+    class func searchWithTerm(term: String, sort: Int?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
         YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
     }
+    
+    class func searchWithTerm(term: String,limit: NSNumber, offset: NSNumber, sort: Int?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
+        YelpClient.sharedInstance.searchWithTerm(term,limit: limit, offset: offset, sort: sort, categories: categories, deals: deals, completion: completion)
+    }
+    
+    class func searchWithTerm(term: String, sort: Int?, categories: [String]?, deals: Bool?, offset: Int?, radius: Float?, completion: ([Business]!, NSError!) -> Void) -> Void {
+        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, offset: offset, radius: radius, completion: completion)
+    }
+
 }
