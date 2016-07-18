@@ -148,6 +148,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="barButtonMapItem" destination="Ax5-Gi-Am3" id="drA-kM-BoH"/>
                         <outlet property="mapView" destination="gtH-0B-MnH" id="Qdy-M7-2Lw"/>
                         <outlet property="mapViewHeightConstrain" destination="VEP-DE-MeD" id="s6E-e4-Lke"/>
                         <outlet property="tableView" destination="vVb-Ip-Iq9" id="dtQ-H4-9Xr"/>
@@ -169,7 +170,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TrS-yl-QXF">
+                            <imageView userInteractionEnabled="NO" alpha="0.34999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TrS-yl-QXF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="667"/>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Pk8-ZU-qwt">
@@ -182,7 +183,7 @@
                                 <rect key="frame" x="0.0" y="69" width="375" height="133.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reviews" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ObS-H0-qos">
-                                        <rect key="frame" x="145" y="34.5" width="53" height="17"/>
+                                        <rect key="frame" x="145" y="38" width="53" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -200,20 +201,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4bc-5b-ZdP">
-                                        <rect key="frame" x="5" y="34.5" width="125" height="18"/>
+                                        <rect key="frame" x="5" y="34.5" width="125" height="25"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="US2-Vx-AKc"/>
+                                            <constraint firstAttribute="height" constant="25" id="US2-Vx-AKc"/>
                                             <constraint firstAttribute="width" constant="125" id="Yx5-2S-s85"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51x-9c-crF">
-                                        <rect key="frame" x="5" y="72.5" width="75" height="18"/>
+                                        <rect key="frame" x="5" y="79.5" width="75" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-eH-3jB">
-                                        <rect key="frame" x="320" y="72.5" width="49.5" height="17"/>
+                                        <rect key="frame" x="320" y="79.5" width="49.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>

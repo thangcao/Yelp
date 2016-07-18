@@ -12,6 +12,7 @@ import MapKit
 import AFNetworking
 class BusinessesViewController: UIViewController , FilterViewControllerDelegate{
     
+    @IBOutlet weak var barButtonMapItem: UIBarButtonItem!
     @IBOutlet weak var mapViewHeightConstrain: NSLayoutConstraint!
     @IBOutlet weak var mapView: MKMapView!
     var businesses: [Business]!
@@ -205,10 +206,12 @@ extension BusinessesViewController {
         if (!isFullMapView){
             self.mapViewHeightConstrain.constant = self.view.frame.height
             isFullMapView = true
+           barButtonMapItem.image = UIImage(named: "list")
         } else {
             self.mapViewHeightConstrain.constant = self.view.frame.height / 15
             isFullMapView = false
             self.noMoreResultLabel.hidden = true
+             barButtonMapItem.image = UIImage(named: "map_icon")
         }
         
     }
