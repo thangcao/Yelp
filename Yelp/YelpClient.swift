@@ -174,7 +174,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         }
         
         if yelpFilter.radius != nil{
-            parameters["radius_filter"] = yelpFilter.radius
+            parameters["radius_filter"] = yelpFilter.radius!
         }
         
         if yelpFilter.categories != nil && yelpFilter.categories!.count > 0 {

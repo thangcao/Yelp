@@ -7,6 +7,8 @@
 //
 import UIKit
 
+
+let LIMIT_DATA = 10
 let HEIGHT_FOR_ROW :CGFloat = 45.0
 let KEY_SWITCHSTATES = "switchStates"
 let KEY_FILTERES = "filters"

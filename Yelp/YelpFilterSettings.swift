@@ -18,7 +18,16 @@ class YelpFilterSettings{
     
     init() {
         term  = ""
-        limit = nil
+        limit = LIMIT_DATA
+        offset = nil
+        sort = nil
+        categories = nil
+        radius = nil
+        deal = false
+    }
+    func resetData() {
+        term  = ""
+        limit = LIMIT_DATA
         offset = nil
         sort = nil
         categories = nil

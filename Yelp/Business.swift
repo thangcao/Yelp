@@ -95,21 +95,8 @@ class Business: NSObject, MKAnnotation {
         }
         return businesses
     }
-    
-    class func searchWithTerm(term: String, completion: ([Business]!, NSError!) -> Void) {
-        YelpClient.sharedInstance.searchWithTerm(term, completion: completion)
-    }
-    
-    class func searchWithTerm(term: String, sort: Int?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
-        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, completion: completion)
-    }
-    
-    class func searchWithTerm(term: String,limit: NSNumber, offset: NSNumber, sort: Int?, categories: [String]?, deals: Bool?, completion: ([Business]!, NSError!) -> Void) -> Void {
-        YelpClient.sharedInstance.searchWithTerm(term,limit: limit, offset: offset, sort: sort, categories: categories, deals: deals, completion: completion)
-    }
-    
-    class func searchWithTerm(term: String, sort: Int?, categories: [String]?, deals: Bool?, offset: Int?, radius: Float?, completion: ([Business]!, NSError!) -> Void) -> Void {
-        YelpClient.sharedInstance.searchWithTerm(term, sort: sort, categories: categories, deals: deals, offset: offset, radius: radius, completion: completion)
+    class func searchWithTerm(yelpFilterSettings: YelpFilterSettings, completion: ([Business]!, NSError!) -> Void) -> Void {
+        YelpClient.sharedInstance.searchWithTerm(yelpFilterSettings, completion: completion)
     }
 
 }
