@@ -142,6 +142,7 @@ extension BusinessesViewController : UISearchBarDelegate{
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         reloadAllData()
+        yelpFilterSettings.term = searchBar.text!
         yelpFilterSettings.offset = businesses != nil ? businesses.count : 0
         loadData(yelpFilterSettings)
     }
@@ -263,22 +264,22 @@ extension BusinessesViewController {
         Business.searchWithTerm(yelpFilterSetting) { (businesses: [Business]?, error: NSError!) -> Void in
             if self.businesses != nil {
                 self.businesses.appendContentsOf(businesses!)
-                self.tableView.reloadData()
-                if (businesses?.count < 10){
-                    self.noMoreResultLabel.hidden = false
-                } else {
-                    self.noMoreResultLabel.hidden = true
-                }
             } else {
                 self.businesses = businesses
-                self.tableView.reloadData()
             }
+            self.tableView.reloadData()
             self.mapView.addAnnotations(businesses!)
+         
             // Update flag
             self.isMoreDataLoading = false
             // Stop the loading indicator
             self.loadingMoreView!.stopAnimating()
             MBProgressHUD.hideHUDForView(self.view, animated: true)
+            if (businesses?.count  == 0 ){
+                self.noMoreResultLabel.hidden = false
+            } else {
+                self.noMoreResultLabel.hidden = true
+            }
         }
     }
     
