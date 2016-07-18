@@ -49,17 +49,18 @@ class BusinessesViewController: UIViewController , FilterViewControllerDelegate{
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Filter" {
-            noMoreResultLabel.hidden = true
             let navigationController = segue.destinationViewController as! UINavigationController
             let filterViewController = navigationController.topViewController as! FilterViewController
             
             filterViewController.delegate = self
         } else if segue.identifier == "ShowDetailBusiness" {
+             noMoreResultLabel.hidden = true
             let detailViewController = segue.destinationViewController as! DetailViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 detailViewController.business = businesses[indexPath.row]
             }
         }
+       
     }
     //MARK: - FiltersViewControllerDelegate
     func filterViewController(filFiltersViewController: FilterViewController, didUpdateFilters filters: [String : AnyObject]) {
