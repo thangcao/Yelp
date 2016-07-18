@@ -270,6 +270,8 @@ extension BusinessesViewController {
             }
             self.tableView.reloadData()
             self.mapView.addAnnotations(businesses!)
+            let initialLocation = CLLocation(latitude: 37.785771, longitude: -122.406165)
+            self.centerMapOnLocation(initialLocation)
          
             // Update flag
             self.isMoreDataLoading = false
