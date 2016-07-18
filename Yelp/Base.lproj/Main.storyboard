@@ -201,20 +201,20 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4bc-5b-ZdP">
-                                        <rect key="frame" x="5" y="34.5" width="125" height="25"/>
+                                        <rect key="frame" x="5" y="34" width="125" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="US2-Vx-AKc"/>
                                             <constraint firstAttribute="width" constant="125" id="Yx5-2S-s85"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51x-9c-crF">
-                                        <rect key="frame" x="5" y="79.5" width="75" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="51x-9c-crF">
+                                        <rect key="frame" x="5" y="79" width="75" height="18"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-eH-3jB">
-                                        <rect key="frame" x="320" y="79.5" width="49.5" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Is Open" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8g-eH-3jB">
+                                        <rect key="frame" x="320" y="79" width="49.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -225,6 +225,7 @@
                                     <constraint firstItem="51x-9c-crF" firstAttribute="leading" secondItem="wgG-Dt-9wC" secondAttribute="leading" id="Feg-dd-KsJ"/>
                                     <constraint firstItem="4bc-5b-ZdP" firstAttribute="top" secondItem="wgG-Dt-9wC" secondAttribute="bottom" constant="10" id="ILX-P0-VOA"/>
                                     <constraint firstItem="4bc-5b-ZdP" firstAttribute="leading" secondItem="wgG-Dt-9wC" secondAttribute="leading" id="Rq9-ZQ-IAC"/>
+                                    <constraint firstItem="a8g-eH-3jB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="51x-9c-crF" secondAttribute="trailing" constant="10" id="U9g-Lc-N1m"/>
                                     <constraint firstItem="51x-9c-crF" firstAttribute="top" secondItem="4bc-5b-ZdP" secondAttribute="bottom" constant="20" id="ZYg-Xp-vG4"/>
                                     <constraint firstItem="a8g-eH-3jB" firstAttribute="top" secondItem="ObS-H0-qos" secondAttribute="bottom" constant="11" id="c1B-hy-8bX"/>
                                     <constraint firstItem="a8g-eH-3jB" firstAttribute="trailing" secondItem="6F7-33-FDH" secondAttribute="trailing" id="cPj-jk-ALH"/>

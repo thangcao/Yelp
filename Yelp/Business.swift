@@ -31,7 +31,11 @@ class Business: NSObject, MKAnnotation {
         } else {
             imageURL = nil
         }
-        phoneNumber = dictionary["display_phone"] as? String
+        if let phoneNumber = dictionary["display_phone"] as? String {
+            self.phoneNumber = phoneNumber
+        } else {
+            self.phoneNumber = ""
+        }
         isOpened = dictionary["is_closed"] as? Int
         let location = dictionary["location"] as? NSDictionary
         var address = ""
