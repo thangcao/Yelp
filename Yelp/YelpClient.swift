@@ -163,6 +163,7 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         // For additional parameters, see http://www.yelp.com/developers/documentation/v2/search_api
         
         // Default the location to San Francisco
+        let meterConst: Float = 1609.344
         var parameters: [String : AnyObject] = ["term": yelpFilter.term!, "ll": "37.785771,-122.406165"]
         
         if yelpFilter.sort != nil {
@@ -174,11 +175,15 @@ class YelpClient: BDBOAuth1RequestOperationManager {
         }
         
         if yelpFilter.radius != nil{
-            parameters["radius_filter"] = yelpFilter.radius!
+            parameters["radius_filter"] = yelpFilter.radius! * meterConst
         }
         
         if yelpFilter.categories != nil && yelpFilter.categories!.count > 0 {
-            parameters["category_filter"] = (yelpFilter.categories!).joinWithSeparator(",")
+            var categoryFilter = [String]()
+            for item in yelpFilter.categories! {
+                categoryFilter.append(item["code"]!)
+            }
+            parameters["category_filter"] = (categoryFilter).joinWithSeparator(",")
         }
         
         if yelpFilter.deal != nil {

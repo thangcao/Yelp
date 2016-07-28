@@ -10,7 +10,7 @@ import UIKit
 import MBProgressHUD
 import MapKit
 import AFNetworking
-class BusinessesViewController: UIViewController , FilterViewControllerDelegate{
+class BusinessesViewController: UIViewController{
     
     @IBOutlet weak var barButtonMapItem: UIBarButtonItem!
     @IBOutlet weak var mapViewHeightConstrain: NSLayoutConstraint!
@@ -46,48 +46,35 @@ class BusinessesViewController: UIViewController , FilterViewControllerDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Filter" {
             let navigationController = segue.destinationViewController as! UINavigationController
-            let filterViewController = navigationController.topViewController as! FilterViewController
-            
-            filterViewController.delegate = self
+            let filterSettingsViewController = navigationController.topViewController as! FilterSettingsViewController
+            filterSettingsViewController.delegate = self
         } else if segue.identifier == "ShowDetailBusiness" {
-             noMoreResultLabel.hidden = true
+            noMoreResultLabel.hidden = true
             let detailViewController = segue.destinationViewController as! DetailViewController
             if let indexPath = tableView.indexPathForSelectedRow {
                 detailViewController.business = businesses[indexPath.row]
             }
         }
-       
-    }
-    //MARK: - FiltersViewControllerDelegate
-    func filterViewController(filFiltersViewController: FilterViewController, didUpdateFilters filters: [String : AnyObject]) {
-        // Should reloadAllData - For example : MapView and TableView
-        reloadAllData()
-        let sortValue = filters["sort"] as? Int
-        let categoryFilters = filters["categories"] as? [String]
-        let deal = filters["deal"] as? Bool
-        var radius = filters["distance"] as! Float?
-        if let radiusValue = radius {
-            radius = radiusValue * meterConst
-        }
-        // Set filters in this view controller
-        yelpFilterSettings.resetData()
-        yelpFilterSettings.term = searchBar.text
-        yelpFilterSettings.offset = 0
-        yelpFilterSettings.sort = sortValue
-        yelpFilterSettings.categories = categoryFilters
-        yelpFilterSettings.deal = deal
-        yelpFilterSettings.radius = radius
-        loadData(yelpFilterSettings)
+        
     }
     
     override func viewDidLayoutSubviews() {
         // Change size of the loading icon
         tableFooterView.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.superview!.frame), height: 50)
         noMoreResultLabel.frame = CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.superview!.frame), height: 50)
+    }
+}
+// FilterSettingsViewDelegate
+extension BusinessesViewController : FilterSettingViewControllerDelegate {
+    func filterSettingViewControllerDelegate(filterSettingViewController: FilterSettingsViewController, filters: YelpFilterSettings) {
+        yelpFilterSettings.resetData()
+        yelpFilterSettings = filters
+        yelpFilterSettings.term = searchBar.text
+        loadData(yelpFilterSettings)
     }
 }
 // Declare TableView
@@ -272,7 +259,7 @@ extension BusinessesViewController {
             self.mapView.addAnnotations(businesses!)
             let initialLocation = CLLocation(latitude: 37.785771, longitude: -122.406165)
             self.centerMapOnLocation(initialLocation)
-         
+            
             // Update flag
             self.isMoreDataLoading = false
             // Stop the loading indicator

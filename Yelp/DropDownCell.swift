@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol DropDownCellDelegate {
-    optional func selectCell(dropDownCell: DropDownCell, didSelect currentImg: UIImage)
+    optional func dropDownCellDelegate(dropDownCell: DropDownCell, valueObject: AnyObject)
 }
 
 class DropDownCell: UITableViewCell {
@@ -18,6 +18,10 @@ class DropDownCell: UITableViewCell {
     
     @IBOutlet weak var itemIcon: UIImageView!
     
+    @IBOutlet weak var viewDropDownCell: UIView!
+    
+    var isSelect : Bool = false
+    var object: AnyObject?
     var delegate: DropDownCellDelegate!
     
     override func awakeFromNib() {
@@ -30,55 +34,28 @@ class DropDownCell: UITableViewCell {
         
         // Configure the view for the selected state
         if delegate != nil {
-            delegate?.selectCell?(self, didSelect: itemIcon.image!)
+            delegate?.dropDownCellDelegate?(self,valueObject: object!)
         }
     }
     
 }
 extension DropDownCell {
-    class func setSortCellVisible(row: Int, cell: DropDownCell, sortValue: Int, isSortCollapsed: Bool) {
-        if isSortCollapsed && row != sortValue {
-            cell.itemLabel.hidden = true
-            cell.itemIcon.hidden = true
-            return
-        }
-        
-        cell.itemLabel.hidden = false
-        cell.itemIcon.hidden = false
-    }
-    class func setSortIcon(row: Int, iconView: UIImageView, sortValue: Int, isSortCollapsed: Bool) {
-        if sortValue == row {
-            if isSortCollapsed {
-                iconView.image = UIImage(named: "Arrow")
+    func disappearCell(isColapse: Bool){
+        if !isColapse {
+            viewDropDownCell.hidden = false
+            if isSelect {
+                itemIcon.image = UIImage(named: "CheckIcon")
             } else {
-                iconView.image = UIImage(named: "CheckIcon")
+                itemIcon.image = UIImage(named: "Circle")
             }
-            return
-        }
-        
-        iconView.image = UIImage(named: "Circle")
-    }
-    class func setRadiusIcon(row: Int, iconView: UIImageView, radiusValue: Float?, compareRadiusValue: Float?, isRadiusCollapsed: Bool) {
-        if radiusValue == compareRadiusValue {
-            if isRadiusCollapsed {
-                iconView.image = UIImage(named: "Arrow")
+        } else {
+            if isColapse && isSelect {
+                itemIcon.image = UIImage(named: "Arrow")
+                viewDropDownCell.hidden = false
             } else {
-                iconView.image = UIImage(named: "CheckIcon")
+                viewDropDownCell.hidden = true
             }
-            return
         }
-        
-        iconView.image = UIImage(named: "Circle")
+       
     }
-    
-    class func setRadiusCellVisible(row: Int, cell: DropDownCell, radiusValue: Float?, compareRadiusValue: Float?, isRadiusCollapsed: Bool) {
-        if isRadiusCollapsed && compareRadiusValue != radiusValue {
-            cell.itemLabel.hidden = true
-            cell.itemIcon.hidden = true
-            return
-        }
-        cell.itemLabel.hidden = false
-        cell.itemIcon.hidden = false
-    }
-
 }

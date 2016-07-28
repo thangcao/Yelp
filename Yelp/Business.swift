@@ -29,7 +29,7 @@ class Business: NSObject, MKAnnotation {
         if imageURLString != nil {
             imageURL = NSURL(string: imageURLString!)!
         } else {
-            imageURL = nil
+            imageURL = NSURL(string: "")
         }
         if let phoneNumber = dictionary["display_phone"] as? String {
             self.phoneNumber = phoneNumber

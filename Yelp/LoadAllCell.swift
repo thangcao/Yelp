@@ -8,11 +8,17 @@
 
 import UIKit
 
+@objc protocol LoadAllCellDelegate{
+    optional func loadAllCellDelegate(isColapse: Bool)
+    
+}
 class LoadAllCell: UITableViewCell {
 
     
-    @IBOutlet weak var seeAllLabel: UILabel!
-    
+    @IBOutlet weak var loadAllButton: UIButton!
+    var delegate: LoadAllCellDelegate?
+    var isColapse: Bool = true
+    @IBOutlet weak var viewCell: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +30,15 @@ class LoadAllCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    
+    @IBAction func loadAllCategoriesAction(sender: AnyObject) {
+        if isColapse {
+            loadAllButton.setTitle("Colapse", forState: UIControlState.Normal)
+            isColapse = false
+        } else {
+            loadAllButton.setTitle("Load All", forState: UIControlState.Normal)
+            isColapse = true
+        }
+        delegate?.loadAllCellDelegate?(isColapse)
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VmF-oc-u09">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="VmF-oc-u09">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -348,7 +348,7 @@
         <!--Filter-->
         <scene sceneID="EOB-yD-Bz9">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="LRZ-P5-qMR" customClass="FilterViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="LRZ-P5-qMR" customClass="FilterSettingsViewController" customModule="Yelp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XIb-iw-vLL"/>
                         <viewControllerLayoutGuide type="bottom" id="GBX-W7-IS1"/>
@@ -391,6 +391,7 @@
                                         <connections>
                                             <outlet property="switchItemLabel" destination="iXu-MF-1h2" id="ESq-C7-VOu"/>
                                             <outlet property="switchItemUISwitch" destination="9Vb-3a-vGQ" id="YUE-Lm-zQg"/>
+                                            <outlet property="viewSwitchCell" destination="1MR-xv-V8Z" id="HzJ-Xd-fAF"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DropDownCell" id="esU-yF-Dxu" customClass="DropDownCell" customModule="Yelp" customModuleProvider="target">
@@ -424,6 +425,7 @@
                                         <connections>
                                             <outlet property="itemIcon" destination="Vpa-vO-ER2" id="lkq-NP-hV5"/>
                                             <outlet property="itemLabel" destination="ZfE-51-SFW" id="TVF-pa-ySA"/>
+                                            <outlet property="viewDropDownCell" destination="KgZ-vv-OrA" id="arU-Tv-7z1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LoadAllCell" id="qfq-T8-FY4" customClass="LoadAllCell" customModule="Yelp" customModuleProvider="target">
@@ -433,20 +435,25 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYj-s1-mrY">
-                                                    <rect key="frame" x="161" y="11" width="53" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yK3-eD-olm" userLabel="LoadAll">
+                                                    <rect key="frame" x="152" y="4.5" width="70" height="35"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                                    <state key="normal" title="Load All">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="loadAllCategoriesAction:" destination="qfq-T8-FY4" eventType="touchUpInside" id="izc-ow-qL0"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="SYj-s1-mrY" firstAttribute="centerY" secondItem="HTj-ll-8ha" secondAttribute="centerY" id="c9A-sj-QgA"/>
-                                                <constraint firstItem="SYj-s1-mrY" firstAttribute="centerX" secondItem="HTj-ll-8ha" secondAttribute="centerX" id="ifh-i1-kBL"/>
+                                                <constraint firstItem="yK3-eD-olm" firstAttribute="centerY" secondItem="HTj-ll-8ha" secondAttribute="centerY" id="Ybf-md-6jA"/>
+                                                <constraint firstItem="yK3-eD-olm" firstAttribute="centerX" secondItem="HTj-ll-8ha" secondAttribute="centerX" id="lPj-OM-aXf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="seeAllLabel" destination="SYj-s1-mrY" id="eiP-Zi-dPw"/>
+                                            <outlet property="loadAllButton" destination="yK3-eD-olm" id="6si-xY-qg4"/>
+                                            <outlet property="viewCell" destination="HTj-ll-8ha" id="iDf-mU-ZHj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -463,18 +470,18 @@
                     <navigationItem key="navigationItem" title="Filter" id="vXc-FN-r3a">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="44R-qB-Cv9">
                             <connections>
-                                <action selector="onCancel:" destination="LRZ-P5-qMR" id="IwG-4y-qFj"/>
+                                <action selector="cancelAction:" destination="LRZ-P5-qMR" id="xfy-c6-Rr8"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="BJZ-dx-IPP">
                             <connections>
-                                <action selector="onSearch:" destination="LRZ-P5-qMR" id="8EH-RU-5B3"/>
+                                <action selector="searchAction:" destination="LRZ-P5-qMR" id="Yyl-MC-8Ht"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="tableView" destination="d4b-My-r7r" id="MDG-wG-l59"/>
+                        <outlet property="tableView" destination="d4b-My-r7r" id="ooo-1S-XCa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sOo-MN-kMm" userLabel="First Responder" sceneMemberID="firstResponder"/>

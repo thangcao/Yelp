@@ -9,11 +9,12 @@
 import UIKit
 
 @objc protocol SwitchCellDelegate {
-    optional func switchCell(switchCell: SwitchCell, didChangeValue value: Bool)
+    optional func switchCellDelegate(switchCell: SwitchCell, value: Bool)
 }
 
 class SwitchCell: UITableViewCell {
 
+    @IBOutlet weak var viewSwitchCell: UIView!
     @IBOutlet weak var switchItemLabel: UILabel!
     
     @IBOutlet weak var switchItemUISwitch: UISwitch!
@@ -32,18 +33,11 @@ class SwitchCell: UITableViewCell {
     }
     
     @IBAction func onSwitchChanged(sender: AnyObject) {
-        delegate?.switchCell?(self, didChangeValue: switchItemUISwitch.on)
+        delegate?.switchCellDelegate?(self, value: switchItemUISwitch.on)
     }
 }
 extension SwitchCell {
-    class func setCategoryCellVisible(row: Int, cell: SwitchCell, isCategoryCollapsed: Bool, categoriesCount: Int) {
-        if isCategoryCollapsed && row > 2 && row != categoriesCount{
-            cell.switchItemLabel.hidden = true
-            cell.switchItemUISwitch.hidden = true
-            return
-        }
-        
-        cell.switchItemLabel.hidden = false
-        cell.switchItemUISwitch.hidden = false
+    func didAppear(isAppear: Bool){
+        viewSwitchCell.hidden = isAppear
     }
 }

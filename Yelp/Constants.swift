@@ -16,6 +16,8 @@ let TITLE_DEAL = "Deal"
 let TITLE_SORT_BY = "Sort by"
 let TITLE_DISTANCE = "Distance"
 let TITLE_CATEGORY = "Category"
+let DISTANCES = [0, 0.3, 1, 5, 20]
+let SORTS = [0, 1, 2]
 let CATEGORIES = [["name" : "Afghan", "code": "afghani"],
                   ["name" : "African", "code": "african"],
                   ["name" : "American, New", "code": "newamerican"],
